@@ -10,6 +10,7 @@ Todo este código ira acompañado con explicaciones durante el workshop.
 - Docker
 - Tener una aplicación de 42 creada. (Settings -> API -> REGISTER A NEW APP)
 - En tu aplicación poner como Redirect URI = http://localhost:3000/callback
+- Conocer la diferencia entre Backend y Frontend
 <br><br>
 ## Que vas a hacer ?
 ### Login
@@ -21,6 +22,12 @@ Todo este código ira acompañado con explicaciones durante el workshop.
 ![home](https://github.com/InigoRomero/42ItTest/blob/main/nodeJS/captures/Home2.png)
 <br>
 <br>
+## Puntos clave de la aplicación ?<br>
+Toda aplicación que autentifique con Oauth2, va a necesitar los siguientes puntos:
+- Un FrontEnd, con un boton que cuando cliques te rediridija a 42 (al enlace que te dan, al crear la aplicación).
+- Cuando el usuario se autorize , le redirigirá automáticamente al enlace que has puesto en la Redirect URI en los ajustes de tu aplicación.
+- Un Backend, que cuando detecte una llamada al path "/callback" (enrutamiento), llame a una función, que se encargara de conseguir el token(controlador).
+- En esta función deberas coger el parametro de la url CODE, con el cual podras llamar a la API y obtener el token, para poder hacer llamadas.
 
 ## Que vas a utilizar ?
 - Node JS (Lenguaje de programación)
