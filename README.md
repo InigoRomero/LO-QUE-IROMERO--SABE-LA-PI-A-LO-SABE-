@@ -1,4 +1,4 @@
-# LO QUE IROMERO- SABE, LA PIÑA LO SABE
+![guapo](https://raw.githubusercontent.com/InigoRomero/LO-QUE-IROMERO--SABE-LA-PI-A-LO-SABE-/main/resources/pin%CC%83aSabe.png)
 <br><br>
 # INTRODUCCIÓN
 <br>
@@ -6,9 +6,10 @@ En este repositorio , se aprendera a como crear una aplicación web con Node JS 
 Todo este código ira acompañado con explicaciones durante el workshop.
 
 ## Que necesitas ?
-- Un portatil
+- Un ordenador
 - Docker
-- 
+- Tener una aplicación de 42 creada. (Settings -> API -> REGISTER A NEW APP)
+- En tu aplicación poner como Redirect URI = http://localhost:3000/callback
 <br><br>
 ## Que vas a hacer ?
 ### Login
