@@ -55,6 +55,7 @@ Primero vamos a generar la siguiente estructura de archivos:<br>
 ```
 <br>
 
+Ahora vamos a ir completando varios de estos archivos
 ### Dockerfile
 
 ```docker
@@ -386,7 +387,7 @@ REDIRECT_URI=http://localhost:3000/callback
 					<img src="https://raw.githubusercontent.com/InigoRomero/42ItTest/main/42Icon.jpeg?token=AK5DQMZPDGPOKG2TZ3CF6XDATK74Y" id="icon" alt="User Icon" />
 					</div>
 					<form>
-						<a href="https://api.intra.42.fr/oauth/authorize?client_id=6273127bf38a7a5b59118d3402f4dec8fce51830cfe0400b4e230648e36d9aca&redirect_uri=Http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code">Log in</button></a></br></br>
+						<a href="your_url">Log in</button></a></br></br>
 					</form>
 					<div id="formFooter">
 					<p class="underlineHover"> Entra si quieres saber todo lo que 42 sabe de tí </p>
@@ -396,10 +397,16 @@ REDIRECT_URI=http://localhost:3000/callback
 		</center>
 	</body>
 </html>
-
 ```
+Perdonar por todo ese css en el header jeje
 <br>
 
+Ahora toca cambiar en index.ejs , el enlace que redirije a 42 para que el usuario se autentifique, con el que se te ha proporcionado al crear la aplicación en la intra.
+```html
+<a href="your_url">Log in</button></a></br></br>
+```
+
+Acontinuación vamos a crear un servidor que lo único que haga sea cargar este index que acabamos de rellenar.
 
 ```js
 data: {
