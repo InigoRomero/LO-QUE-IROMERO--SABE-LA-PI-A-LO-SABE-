@@ -41,3 +41,63 @@ Toda aplicación que autentifique con Oauth2, va a necesitar los siguientes punt
 
 # PRACTICA
 <br>
+Primero vamos a generar la siguiente estructura de archivos:<br>
+
+```shell
+-- Docker-compose.yml
+-- Dockerfile
+-- index.ejs
+-- package-lock.json
+-- package.json
+-- home.ejs
+-- server.js
+-- .env
+```
+<br>
+
+### Dockerfile
+
+```docker
+FROM node:14.16
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+CMD ["bash", "-c","npm install & npm run docker:start"]
+```
+<br>
+
+### Docker-compose
+
+```docker
+version: "3.1"
+services:
+    app:
+        build: .
+        volumes:
+            - .:/app
+            - /app/node_modules
+        ports:
+            - 3000:3000
+        tty: true
+```
+<br>
+
+
+```js
+data: {
+  access_token: 'xxxx',
+  token_type: 'bearer',
+  expires_in: 7200,
+  refresh_token: 'xxxx',
+  scope: 'public',
+  created_at: 1624471209
+}
+```
+
+
