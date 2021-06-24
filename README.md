@@ -46,12 +46,12 @@ Primero vamos a generar la siguiente estructura de archivos:<br>
 ```shell
 -- Docker-compose.yml
 -- Dockerfile
--- index.ejs
--- package-lock.json
--- package.json
--- home.ejs
 -- server.js
+-- index.ejs
+-- home.ejs
 -- .env
+-- package-lock.json // se genera automáticamente al instalar librerias (npm install xx)
+-- package.json // se genera automáticamente al iniciar npm (npm init)
 ```
 <br>
 
