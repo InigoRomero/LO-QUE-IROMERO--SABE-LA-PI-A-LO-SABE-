@@ -52,17 +52,18 @@ app.get('/request', async function (req, res) {
 		  .catch(function (error) { 
 			  // if we got an error, we going to try to refresh the token
 			  /*if (req.session.refresh){
-				axios.post(process.env.ACCESS_TOKEN_URI, {
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: {
-						'grant_type': 'refresh_token',
-						'refresh_token': req.session.refresh,
-						'client_id': process.env.CLIENT_ID,
-						'client_secret': process.env.CLIENT_SECRET
-					}
-				  }).then(function (response) {
+				axios.({
+				      method: 'post',
+				      url: process.env.ACCESS_TOKEN_URI,
+				      headers: {'Content-Type': 'application/json'}, 
+				      data: {
+					'grant_type': 'refresh_token',
+					'refresh_token': req.session.refresh,
+					'client_id': process.env.CLIENT_ID,
+					'client_secret': process.env.CLIENT_SECRET
+				      }
+				   })
+				  .then(function (response) {
 					  console.log(response);
 					  req.session.refresh = response.data.refresh_token;
 					  req.session.token = response.data.accessToken;
