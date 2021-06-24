@@ -52,7 +52,7 @@ app.get('/request', async function (req, res) {
 		  .catch(function (error) { 
 			  // if we got an error, we going to try to refresh the token
 			  /*if (req.session.refresh){
-				axios.({
+				axios({
 				      method: 'post',
 				      url: process.env.ACCESS_TOKEN_URI,
 				      headers: {'Content-Type': 'application/json'}, 
