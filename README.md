@@ -35,8 +35,8 @@ Toda aplicación que autentifique con Oauth2, va a necesitar los siguientes punt
 - axios (librería que nos permite hacer peticiones HTTP a un servidor)
 - client-oauth2 (Librería para fazilitarnos la autentificación con la API de 42)
 - dotenv (Librería para cargar variables de entorno)
-- ejs (Embedded JavaScript templates)
 - express-session (librería para crear sesiones)
+- ejs (Embedded JavaScript templates)
 <br><br>
 
 # PRACTICA
