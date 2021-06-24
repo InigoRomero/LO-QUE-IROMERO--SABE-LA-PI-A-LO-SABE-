@@ -5,14 +5,14 @@
 En este repositorio , se aprendera a como crear una aplicación web con Node JS y la API de 42.<br>
 Todo este código ira acompañado con explicaciones durante el workshop.
 
-## Que necesitas ?
+## ¿Qué necesitas ?
 - Un ordenador
 - Docker
 - Tener una aplicación de 42 creada. (Settings -> API -> REGISTER A NEW APP)
 - En tu aplicación poner como Redirect URI = http://localhost:3000/callback
 - Conocer la diferencia entre Backend y Frontend
 <br><br>
-## Que vas a hacer ?
+## ¿Qué vas a hacer ?
 ### Login
 ![Login](https://github.com/InigoRomero/42ItTest/blob/main/nodeJS/captures/Login.png)
 ### Auth
@@ -22,14 +22,14 @@ Todo este código ira acompañado con explicaciones durante el workshop.
 ![home](https://github.com/InigoRomero/42ItTest/blob/main/nodeJS/captures/Home2.png)
 <br>
 <br>
-## Puntos clave de la aplicación ?<br>
+## Puntos clave de la aplicación <br>
 Toda aplicación que autentifique con Oauth2, va a necesitar los siguientes puntos:
 - Un FrontEnd, con un boton que cuando cliques te rediridija a 42 (al enlace que te dan, al crear la aplicación).
 - Cuando el usuario se autorize , le redirigirá automáticamente al enlace que has puesto en la Redirect URI en los ajustes de tu aplicación.
 - Un Backend, que cuando detecte una llamada al path "/callback" (enrutamiento), llame a una función, que se encargara de conseguir el token(controlador).
 - En esta función deberas coger el parametro de la url CODE, con el cual podras llamar a la API y obtener el token, para poder hacer llamadas.
 
-## Que vas a utilizar ?
+## ¿Qué vas a utilizar ?
 - Node JS (Lenguaje de programación)
 - Express (Framework para crear aplicaciones web y API)
 - axios (librería que nos permite hacer peticiones HTTP a un servidor)
@@ -55,7 +55,7 @@ Primero vamos a generar la siguiente estructura de archivos:<br>
 ```
 <br>
 
-Ahora vamos a ir completando varios de estos archivos
+Ahora vamos a ir completando varios de estos archivos, para poder lanzar nuestra aplicación
 ### Dockerfile
 
 ```docker
@@ -99,6 +99,10 @@ AUTHORIZATION_URI=https://api.intra.42.fr/oauth
 REDIRECT_URI=http://localhost:3000/callback
 ```
 <br>
+
+Acontinuación vamos a rellenar de los package:
+[package.json](https://github.com/InigoRomero/LO-QUE-IROMERO--SABE-LA-PI-A-LO-SABE-/blob/main/nodeJS/package.json) <br>
+[package-lock.json](https://github.com/InigoRomero/LO-QUE-IROMERO--SABE-LA-PI-A-LO-SABE-/blob/main/nodeJS/package-lock.json) <br>
 
 ### index.ejs
 
@@ -407,6 +411,39 @@ Ahora toca cambiar en index.ejs , el enlace que redirije a 42 para que el usuari
 ```
 
 Acontinuación vamos a crear un servidor que lo único que haga sea cargar este index que acabamos de rellenar.
+
+### server.js
+
+```shell
+var express = require('express'),
+		session = require('express-session'),
+		app = express(),
+		path = require('path');
+
+require('dotenv').config()
+
+app.set('view engine', 'ejs');
+
+app.get('/', function (req, res) {
+		res.render(path.join(__dirname + '/index.ejs'));
+});
+
+app.listen(3000);
+
+```
+<br>
+
+Con esto ya podemos hacer docker-compose up y veremos que si ponemos http://localhost:3000/ en nuestro navegador, podremos ya ver el login.<br>
+
+### Repasemos. ¿Qué tenemos hasta ahora? 🤔
+
+Tiempo de repaso <br>
+Tiempo de repaso <br>
+Tiempo de repaso <br>
+Tiempo de repaso <br>
+Tiempo de repaso <br>
+Tiempo de repaso <br>
+Tiempo de repaso <br>
 
 ```js
 data: {
