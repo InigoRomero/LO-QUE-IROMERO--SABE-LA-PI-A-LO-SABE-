@@ -444,6 +444,11 @@ Tiempo de repaso <br>
 Tiempo de repaso <br>
 Tiempo de repaso <br>
 Tiempo de repaso <br>
+<br>
+
+### Siguiente paso 🧠<br>
+Tenemos que conseguir que cuando el usuario se autorize en 42 y 42 lo redirija a nuestra aplicación, ejecute una función la cual cogerá la variable code de la url.<br> (ej: http://localhost:3000/callback?code=c9248d385e086dd4389b1f4466a2bba4a956fe1a803650e66d2867a2d4004164 ).<br>
+Entonces con este código, haremos una llamada a 42 (https://api.intra.42.fr/oauth/token), en la cual le pasaremos el código que hemos conseguido y 42 nos devolvera la siguiente información: <br>
 
 ```js
 data: {
@@ -455,5 +460,81 @@ data: {
   created_at: 1624471209
 }
 ```
+<br><br>
+Añadimos el siguiente código a server.js <br>
 
+### server.js
+```js
+/cargamos libreria
+var ClientOAuth2 = require('client-oauth2')
+//iniciamos libreria Oauth2
+var auth = new ClientOAuth2({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  accessTokenUri: process.env.ACCESS_TOKEN_URI,
+  authorizationUri: process.env.AUTHORIZATION_URI,
+  redirectUri: process.env.REDIRECT_URI
+})
 
+app.get('/callback', function (req, res) {
+
+	auth.code.getToken(req.originalUrl).then(function (user) {
+		user.refresh().then(function (updatedUser) {
+		  req.session.refresh = updatedUser.data.refresh_token;
+		  req.session.token = updatedUser.accessToken;
+		  req.session.expires_in = updatedUser.data.expires_in;
+		  req.session.created_at = updatedUser.data.created_at;
+		  console.log(pdatedUser.data);
+		})
+	})
+	
+});
+``` 
+<br><br>
+
+Debería quedaros un código así:
+```js
+var express = require('express'),
+		session = require('express-session'),
+		app = express(),
+		path = require('path');
+
+app.use(session({
+	secret: '1234567890QWERTY',
+	resave: true,
+	saveUninitialized: false
+}));
+var ClientOAuth2 = require('client-oauth2')
+require('dotenv').config()
+
+var auth = new ClientOAuth2({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  accessTokenUri: process.env.ACCESS_TOKEN_URI,
+  authorizationUri: process.env.AUTHORIZATION_URI,
+  redirectUri: process.env.REDIRECT_URI
+})
+
+app.set('view engine', 'ejs');
+
+app.get('/callback', function (req, res) {
+
+	auth.code.getToken(req.originalUrl).then(function (user) {
+		// Refresh the current users access token.
+		user.refresh().then(function (updatedUser) {
+		  req.session.refresh = updatedUser.data.refresh_token;
+		  req.session.token = updatedUser.accessToken;
+		  req.session.expires_in = updatedUser.data.expires_in;
+		  req.session.created_at = updatedUser.data.created_at;
+		  console.log(updatedUser.data);
+		})
+	})
+});
+
+app.get('/', function (req, res) {
+	res.render(path.join(__dirname + '/index.ejs'));
+});
+
+app.listen(3000);
+```
+<br><br>
