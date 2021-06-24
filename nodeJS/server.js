@@ -50,41 +50,36 @@ app.get('/request', async function (req, res) {
 			res.render(path.join(__dirname + '/home.ejs'), {me: response.data, req_ret: ''});
 		  })
 		  .catch(function (error) { 
-			  // if we got an error, we going to try to refresh the token
-			  /*if (req.session.refresh){
-				axios({
-				      method: 'post',
-				      url: process.env.ACCESS_TOKEN_URI,
-				      headers: {'Content-Type': 'application/json'}, 
-				      data: {
-					'grant_type': 'refresh_token',
-					'refresh_token': req.session.refresh,
-					'client_id': process.env.CLIENT_ID,
-					'client_secret': process.env.CLIENT_SECRET
-				      }
-				   })
-				  .then(function (response) {
-					  console.log(response);
-					  req.session.refresh = response.data.refresh_token;
-					  req.session.token = response.data.accessToken;
-					  req.session.expires_in = response.data.expires_in;
-					  req.session.created_at = response.data.created_at;
-					  res.redirect('/request');
-				  })
-				  .catch(function (error) {
-					  console.log(error.message);
-					  res.redirect('/');
-				  });
-			  }
-			  else*/
 			  	res.render(path.join(__dirname + '/index.ejs'), {me: 'Bad request.', req_ret: ''});
 		  });
 	}
 });
 
 app.get('/', function (req, res) {
-	if (req.session.token)
-		res.redirect('/request');
+	if (req.session.refresh)
+	{
+		axios({
+			method: 'post',
+			url: process.env.ACCESS_TOKEN_URI,
+			headers: {'Content-Type': 'application/json'}, 
+			data: {
+		  'grant_type': 'refresh_token',
+		  'refresh_token': req.session.refresh,
+		  'client_id': process.env.CLIENT_ID,
+		  'client_secret': process.env.CLIENT_SECRET
+			}
+		 })
+		.then(function (response) {
+			req.session.refresh = response.data.refresh_token;
+			req.session.token = response.data.access_token;
+			req.session.expires_in = response.data.expires_in;
+			req.session.created_at = response.data.created_at;
+			res.redirect('/request');
+		})
+		.catch(function (error) {
+			res.redirect('/');
+		});
+	}
 	else
 		res.render(path.join(__dirname + '/index.ejs'));
 });
