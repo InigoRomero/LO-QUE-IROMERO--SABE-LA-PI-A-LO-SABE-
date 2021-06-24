@@ -822,7 +822,7 @@ app.get('/', function (req, res) {
 app.listen(3000);
 ```
 <br><br>
-Y siempre que queramos lanzar esto de nuevo, docker-compose up y abrir en el navegador http://localhost:3000/
+### Y siempre que queramos lanzar esto de nuevo, **docker-compose up** y abrir en el navegador **http://localhost:3000/**
 # Recursos y otras aplicaciones hechas con la API de 42
 <br>
 
