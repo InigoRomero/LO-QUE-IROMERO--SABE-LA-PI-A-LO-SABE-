@@ -823,5 +823,15 @@ app.listen(3000);
 ```
 <br><br>
 
+# Recursos y otras aplicaciones hechas con la API de 42
+<br>
+
+- **NodeJS** -> (ejemplo hecho aquí) https://github.com/InigoRomero/LO-QUE-IROMERO--SABE-LA-PI-A-LO-SABE-/tree/main/nodeJS
+- **NodeJS + ReactJS** -> https://github.com/InigoRomero/42Calculator
+- **pyhton + Django** -> https://github.com/InigoRomero/42ItTest/tree/main/pyhtonDjango
+- **rubyOnRails** -> https://github.com/InigoRomero/42ItTest/tree/main/rubyOn
+- **PHP + Laravel** -> https://github.com/InigoRomero/42ItTest/tree/main/laravelPHP
+- **Scripts en ruby** -> https://github.com/InigoRomero/42ApiScript
+
  
 
