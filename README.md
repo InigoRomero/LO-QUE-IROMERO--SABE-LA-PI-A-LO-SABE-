@@ -23,6 +23,7 @@ Todo este código ira acompañado con explicaciones durante el workshop.
 <br>
 <br>
 ## Puntos clave de la aplicación <br>
+![guapo](https://github.com/InigoRomero/LO-QUE-IROMERO--SABE-LA-PI-A-LO-SABE-/blob/main/resources/diagrama.png)
 Toda aplicación que autentifique con Oauth2, va a necesitar los siguientes puntos:
 - Un FrontEnd, con un boton que cuando cliques te rediridija a 42 (al enlace que te dan, al crear la aplicación).
 - Cuando el usuario se autorize , le redirigirá automáticamente al enlace que has puesto en la Redirect URI en los ajustes de tu aplicación.
