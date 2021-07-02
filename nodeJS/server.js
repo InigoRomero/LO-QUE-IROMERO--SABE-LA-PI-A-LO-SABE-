@@ -8,6 +8,9 @@ app.use(session({
 	resave: true,
 	saveUninitialized: false
 }));
+app.use(express.json());
+app.use(express.urlencoded());
+
 const axios = require('axios');
 var ClientOAuth2 = require('client-oauth2')
 require('dotenv').config()
@@ -51,6 +54,25 @@ app.get('/request', async function (req, res) {
 		  })
 		  .catch(function (error) { 
 			  	res.render(path.join(__dirname + '/index.ejs'), {me: 'Bad request.', req_ret: ''});
+		  });
+	}
+});
+
+app.post('/request', async function (req, res) {                                                                                                            
+	if (!req.session.token)                                                                                                                                    
+		res.redirect('/');
+	else
+	{
+		var token = req.session.token;
+		axios.get("https://api.intra.42.fr/v2/users/" + req.body.request, {
+			headers: {
+			  'Authorization': 'Bearer ' + token
+			}
+		  }).then(function (response) {
+			res.render(path.join(__dirname + '/home.ejs'), {me: response.data, req_ret: ''});
+		  })
+		  .catch(function (error) { 
+				  res.render(path.join(__dirname + '/error.ejs'), {me: 'Bad request.', req_ret: ''});
 		  });
 	}
 });
